@@ -35,6 +35,8 @@ class LineAnalyzer
     @highest_wf_count = word_frequency.values.max
     # prefer select over reject - positive logic always more clear than negative
     @highest_wf_words = word_frequency.select { |word, freq| freq == @highest_wf_count }.keys
+   puts @highest_wf_words
+   puts "-------"
   end
 end
 
@@ -55,8 +57,8 @@ class Solution
     analyze_file(file_name)
     # call the calculate method(s) here
     calculate_line_with_highest_frequency
-    print_highest_word_frequency_across_lines  
-       
+    print_highest_word_frequency_across_lines()  
+    
   end
 
   # Implement the following methods in the Solution class.
@@ -69,8 +71,10 @@ class Solution
     # this will get an instance of LineAnalyzer for each line of your data file into an array
     File.foreach(file_name).with_index do |line, line_number|
       # << is a common shorthand to append an item to an array
+      
       @analyzers << LineAnalyzer.new(line, line_number + 1)
-
+       a = @analyzers.to_a
+      # puts a[1]
     end
   end
 
@@ -86,15 +90,16 @@ class Solution
   #  highest_count_words_across_lines attribute values
 
   def calculate_line_with_highest_frequency
+    
     # I need to send each line of the @analyzers to the 
     # the LineAnalyzer.calculate_word_frequency will find the words that appear the most on each line
     # I then need to identify  the LineAnalyzer objects in the @analyers array that have highest_wf_count equal to highest_count_accross 
     # * lines 
     # not sure if the next code is headed in the right direction
-    @analyers.foreach.with_index do |line, line_number| {self.initialize(line, line_number)}   # not sure how to send this to the Line Analyzer class
-      highest_count_across_lines << @highest_wf_words                        
-    }
-    end
+    #@analyers.foreach.with_index do |line, line_number| {self.initialize(line, line_number)}   # not sure how to send this to the Line Analyzer class
+     # highest_count_across_lines << @highest_wf_words                        
+    
+    #end
   end
 
   #Implement the print_highest_word_frequency_across_lines() method to
@@ -103,9 +108,12 @@ class Solution
   #  highest_count_words_across_lines in the specified format
 
   def print_highest_word_frequency_across_lines
-    puts highest_count_words_across_lines
+    #puts highest_count_words_across_lines
+    puts "Hello"
+    
   end
 end
 
  
 
+Solution.new
