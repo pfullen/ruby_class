@@ -55,7 +55,8 @@ class Solution
     analyze_file(file_name)
     # call the calculate method(s) here
     calculate_line_with_highest_frequency
-    print_highest_word_frequency_across_lines    
+    print_highest_word_frequency_across_lines  
+       
   end
 
   # Implement the following methods in the Solution class.
@@ -90,7 +91,10 @@ class Solution
     # I then need to identify  the LineAnalyzer objects in the @analyers array that have highest_wf_count equal to highest_count_accross 
     # * lines 
     # not sure if the next code is headed in the right direction
-    highest_count_across_lines = @analyers.each_with_object(Hash.new(0)) {|word,count| count[word] +=1}
+    @analyers.foreach.with_index do |line, line_number| {self.initialize(line, line_number)}   # not sure how to send this to the Line Analyzer class
+      highest_count_across_lines << @highest_wf_words                        
+    }
+    end
   end
 
   #Implement the print_highest_word_frequency_across_lines() method to
